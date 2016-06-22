@@ -11,3 +11,6 @@ trello:
   trello_token:
     client: true
     default: ''
+  admin_group_id:
+    client: true
+    default: '1'

@@ -10,10 +10,13 @@ after_initialize do
     begin
       post, opts, user = params
       topic = post.topic
-      Rails.logger.info("Post = #{post}, opts = #{opts}, user = #{user}")
       next if topic.try(:private_message?)
-      Rails.logger.info("Groups = #{user.groups}")
+      status = "Open"
       
+      if (user.groups.include?(Group.find(SiteSetting.admin_group_id)))
+        status = "Pending"
+      end
+
       topic_url = "#{Discourse.base_url}#{post.url}"
 
       uri = URI.parse(SiteSetting.trello_url)
@@ -25,6 +28,7 @@ after_initialize do
       request.body = {
             :add => (post.try(:is_first_post?) ? "true" : "false"),
             :title => topic.title,
+            :status => status,
             :url => topic.url,
             :ticket => topic.id,
             :apikey => SiteSetting.trello_apikey,
