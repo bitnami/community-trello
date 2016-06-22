@@ -4,11 +4,13 @@
 # authors: Bernd Ahlers
 
 after_initialize do
-  DiscourseEvent.on(:topic_created) do |*params|
+  DiscourseEvent.on(:post_created) do |*params|
     next unless SiteSetting.trello_enabled
 
     begin
+      Rails.logger.info("Inside the plugin")
       post, opts, user = params
+      Rails.logger.info("Post = #{post}, opts = #{opts}, user = #{user}")
       topic = post.topic
 
       topic_url = "#{Discourse.base_url}#{post.url}"
