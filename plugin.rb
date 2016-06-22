@@ -8,11 +8,12 @@ after_initialize do
     next unless SiteSetting.trello_enabled
 
     begin
-      Rails.logger.info("Inside the plugin")
       post, opts, user = params
-      Rails.logger.info("Post = #{post}, opts = #{opts}, user = #{user}")
       topic = post.topic
-
+      Rails.logger.info("Post = #{post}, opts = #{opts}, user = #{user}")
+      next if topic.try(:private_message?)
+      Rails.logger.info("Groups = #{user.groups}")
+      
       topic_url = "#{Discourse.base_url}#{post.url}"
 
       uri = URI.parse(SiteSetting.trello_url)
