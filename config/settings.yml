@@ -1,0 +1,13 @@
+trello:
+  trello_enabled:
+    client: true
+    default: false
+  trello_url:
+    client: true
+    default: '<incoming webhook url>'
+  trello_apikey:
+    client: true
+    default: ''
+  trello_token:
+    client: true
+    default: ''
