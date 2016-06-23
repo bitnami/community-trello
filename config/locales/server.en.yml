@@ -1,8 +1,7 @@
 en:
   site_settings:
-    slack_enabled: 'Check this to enable the Slack integration.'
-    slack_url: 'Slack URL including access token.'
-    slack_channel: 'Slack channel to post this message to. (i.e. #general, @username)'
-    slack_emoji: 'Slack emoji to use.'
-    slack_posts: 'Post all new posts to Slack (not just new topics).'
-    slack_full_names: 'Shows user full names instead of usernames (shows username if user did not set one)'
+    trello_enabled: 'Check this to enable the Trello integration.'
+    trello_url: 'Trello Updater URL.'
+    admin_group_id: 'Group ID for Bitnami staff users'
+    trello_apikey: 'Trello API Key'
+    trello_token: 'Trello API Token'
