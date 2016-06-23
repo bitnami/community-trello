@@ -3,4 +3,4 @@ en:
     admin:
       site_settings:
         categories:
-          slack: 'Slack'
+          trello: 'Trello Updater integration'
