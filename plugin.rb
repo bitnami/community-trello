@@ -1,7 +1,7 @@
 # name: Community trello
 # about: Integrate bitnami community and trello
-# version: 0.2.0
-# authors: Bernd Ahlers
+# version: 0.1.0
+# authors: Javier J. Salmeron
 
 after_initialize do
   DiscourseEvent.on(:post_created) do |*params|
