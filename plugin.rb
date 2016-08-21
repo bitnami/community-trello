@@ -12,7 +12,9 @@ after_initialize do
       topic = post.topic
       next if topic.try(:private_message?)
       status = "Open"
-      
+      category = Category.find(post.topic.category_id)
+      category_name = category.name   	
+   
       if (user.groups.include?(Group.find(SiteSetting.admin_group_id)))
         status = "Pending"
       end
@@ -32,7 +34,9 @@ after_initialize do
             :url => topic.url,
             :ticket => topic.id,
             :apikey => SiteSetting.trello_apikey,
-            :token => SiteSetting.trello_token 
+            :token => SiteSetting.trello_token,
+	    :user => user.username,
+	    :category => category_name
       }.to_json
 
       response = http.request(request)
