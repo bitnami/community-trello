@@ -31,12 +31,14 @@ after_initialize do
             :add => (post.try(:is_first_post?) ? "true" : "false"),
             :title => topic.title,
             :status => status,
+            :type => "CommunitySupportTicket",
             :url => topic.url,
             :ticket => topic.id,
             :apikey => SiteSetting.trello_apikey,
             :token => SiteSetting.trello_token,
-	    :user => user.username,
-	    :category => category_name
+            :agent => user.username,
+	        :user => user.username,
+	        :category => category_name
       }.to_json
 
       response = http.request(request)
