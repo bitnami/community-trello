@@ -5,12 +5,6 @@ trello:
   trello_url:
     client: true
     default: '<incoming webhook url>'
-  trello_apikey:
-    client: true
-    default: ''
-  trello_token:
-    client: true
-    default: ''
   admin_group_id:
     client: true
     default: '1'

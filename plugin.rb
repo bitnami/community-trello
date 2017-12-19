@@ -1,7 +1,7 @@
 # name: Community trello
 # about: Integrate bitnami community and trello
-# version: 0.1.0
-# authors: Javier J. Salmeron
+# version: 0.1.1
+# authors: Javier J. Salmeron, Juan Ariza
 
 after_initialize do
   DiscourseEvent.on(:post_created) do |*params|
@@ -11,11 +11,14 @@ after_initialize do
       post, opts, user = params
       topic = post.topic
       next if topic.try(:private_message?)
-      status = "Open"
       category = Category.find(post.topic.category_id)
-      category_name = category.name   	
-   
-      if (user.groups.include?(Group.find(SiteSetting.admin_group_id)))
+      category_name = category.name
+
+      # Determine the Status
+      status = "Open"
+      if (topic.closed)
+        status = "Solved"
+      elsif (user.groups.include?(Group.find(SiteSetting.admin_group_id)))
         status = "Pending"
       end
 
