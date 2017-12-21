@@ -37,8 +37,6 @@ after_initialize do
             :type => "CommunitySupportTicket",
             :url => topic.url,
             :ticket => topic.id,
-            :apikey => SiteSetting.trello_apikey,
-            :token => SiteSetting.trello_token,
             :agent => user.username,
 	        :user => user.username,
 	        :category => category_name
